@@ -151,6 +151,78 @@ Before deploying, set up S3-compatible storage:
 - Set up alerts for deployment failures and high resource usage
 - Regular database backups are handled automatically
 
+## Free Deployment Alternatives
+
+If you're looking for free hosting options, here are some recommendations:
+
+### 1. Railway (Recommended for Free Tier)
+- **Free Tier**: $5 credit per month (enough for small apps)
+- **Pros**: Great Python support, PostgreSQL included, easy deployment
+- **Cons**: Limited to $5/month usage
+
+**Setup:**
+1. Go to [railway.app](https://railway.app)
+2. Connect your GitHub repository
+3. Add PostgreSQL service
+4. Set environment variables
+5. Deploy automatically
+
+### 2. Render (Good Free Option)
+- **Free Tier**: Web service sleeps after 15 minutes of inactivity
+- **Pros**: PostgreSQL free tier, automatic SSL, Git-based deployment
+- **Cons**: Cold starts, limited resources
+
+**Setup:**
+1. Go to [render.com](https://render.com)
+2. Create web service from GitHub repo
+3. Add PostgreSQL database (free tier)
+4. Configure environment variables
+
+### 3. Fly.io (Generous Free Tier)
+- **Free Tier**: 3 shared-cpu VMs, 3GB storage
+- **Pros**: Great performance, Docker support, global deployment
+- **Cons**: Requires Docker configuration
+
+### 4. Vercel + PlanetScale (Frontend + Database)
+- **Limitation**: Backend would need significant modification for serverless
+- **Better for**: Frontend-only deployment with external API
+
+### 5. Supabase + Netlify (Alternative Stack)
+- **Approach**: Use Supabase for backend services, Netlify for frontend
+- **Pros**: Both have generous free tiers
+- **Cons**: Requires application restructuring
+
+## Recommended Free Deployment: Railway
+
+For your OpenUI application, **Railway** is the best free option because:
+
+1. **Easy Setup**: Works with your existing configuration
+2. **PostgreSQL Included**: Free PostgreSQL database
+3. **Python Support**: Native Python/FastAPI support
+4. **$5 Monthly Credit**: Usually enough for development/testing
+
+### Railway Deployment Steps:
+
+1. **Sign up at [railway.app](https://railway.app)**
+2. **Create new project from GitHub**
+3. **Add PostgreSQL service**
+4. **Configure environment variables:**
+   ```
+   WEBUI_SECRET_KEY=your-secret-key
+   DATABASE_URL=${{Postgres.DATABASE_URL}}
+   STORAGE_PROVIDER=local  # or configure free S3 alternative
+   ```
+5. **Deploy automatically**
+
+### Free Storage Options:
+
+Since most free hosting has limitations on file storage, consider:
+
+1. **Cloudflare R2**: 10GB free per month
+2. **Backblaze B2**: 10GB free
+3. **Google Cloud Storage**: $300 credit for new accounts
+4. **Local Storage**: For testing only (files lost on restart)
+
 ## Support
 
 If you encounter issues:

@@ -1,0 +1,22 @@
+# Railway Deployment Configuration
+
+# This file tells Railway how to build and deploy your app
+# Place this in the root of your repository
+
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+startCommand = "cd backend && python -m uvicorn open_webui.main:app --host 0.0.0.0 --port $PORT"
+healthcheckPath = "/health"
+healthcheckTimeout = 300
+restartPolicyType = "ON_FAILURE"
+
+[env]
+# These will be set automatically by Railway
+# DATABASE_URL = "${{Postgres.DATABASE_URL}}"
+# PORT = "${{PORT}}"
+
+# You need to set these manually in Railway dashboard
+# WEBUI_SECRET_KEY = "your-secret-key"
+# STORAGE_PROVIDER = "local"
